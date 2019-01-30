@@ -8,6 +8,14 @@ body {
 .container {
     display: flex;
 }
+
+#canvas {
+    background: red;
+  
+    height: 800px;
+    width: 800px;
+}
+
 .canvas__nav {
     width:25%;
     background: #F44336;
@@ -29,9 +37,11 @@ body {
     border-bottom:1px solid #C62828;
 }
 
-#canvas {
-    background: red;
-  
-    height: 800px;
-    width: 800px;
+
+.canvas__nav__upload {
+    background:#fff;
+    padding:0.5rem 2rem;
+}
+.canvas__nav__element[type=file]{
+display:none;
 }
