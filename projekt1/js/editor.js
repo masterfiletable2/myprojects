@@ -1,10 +1,17 @@
+const input = document.querySelector('input');
+const editor = document.querySelector('#canvas');
+const canvas = document.querySelector('#canvas__pEditor');
 
-const canvas = document.querySelector('#canvas');
-const editor = document.querySelector('#canvas__pEditor');
 
-let menuElements = document.querySelectorAll('.canvas__nav__element');
-  
-let ctx = canvas.getContext('2d');
-    canvas.setAttribute('height', canvas.clientHeight);
-    canvas.setAttribute('width', canvas.clientWidth);
+	canvas.setAttribute('height',editor.clientHeight);
+    canvas.setAttribute('width',editor.clientWidth);
+    
+    let ctx = canvas.getContext('2d');
 
+    function updateImageDisplay() {
+        while(canvas.firstChild){
+            canvas.removeChild(canvas.firstChild);
+        }
+    }
+
+    input.addEventListener('change', updateImageDisplay);

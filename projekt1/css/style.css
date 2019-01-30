@@ -38,10 +38,10 @@ body {
 }
 
 
-.canvas__nav__upload {
+.canvas__button__upload {
     background:#fff;
     padding:0.5rem 2rem;
 }
-.canvas__nav__element[type=file]{
+.canvas__button__element[type=file]{
 display:none;
 }
