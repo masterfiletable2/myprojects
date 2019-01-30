@@ -1,13 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,300,400,500,600');
 body {
     margin:0;
     padding:0;
     box-sizing: border-box;
+    font-family: 'Poppins';
 }
-
-.canvas__nav {
+.container {
     display: flex;
-    flex-direction: column;
+}
+.canvas__nav {
     width:25%;
     background: #F44336;
     height: 100vh;
+  
+}
+
+.canvas__nav__list {
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+
+.canvas__nav__element {
+    width:100%;
+    background: #E53935;
+    padding:1rem 0;
+    text-align: center;
+    border-bottom:1px solid #C62828;
+}
+
+#canvas {
+    background: red;
+  
+    height: 800px;
+    width: 800px;
 }
