@@ -15,3 +15,11 @@ const canvas = document.querySelector('#canvas__pEditor');
     }
 
     input.addEventListener('change', updateImageDisplay);
+
+    let files = input.files;
+    let list = document.createElement('ol');
+        canvas.appendChild(list);
+            for(let i =0; i < files.length; i++){
+                let listElement = document.createElement('li');
+                 
+            }
