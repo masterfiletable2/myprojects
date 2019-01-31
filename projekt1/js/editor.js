@@ -12,17 +12,19 @@ const canvas = document.querySelector('#canvas__pEditor');
         while(canvas.firstChild){
             canvas.removeChild(canvas.firstChild);
         }
-    }
+   
+        
 
-    input.addEventListener('change', updateImageDisplay);
 
     let files = input.files;
+      
+
     let list = document.createElement('ol');
         canvas.appendChild(list);
             for(let i =0; i < files.length; i++){
                 let listElement = document.createElement('li');
                  
-            }
+            
 
             if(validFileType(files[i])){
                 let img = new Image();
@@ -31,5 +33,38 @@ const canvas = document.querySelector('#canvas__pEditor');
                 img.addEventListener('load' , ()=>{
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 })
+
+
+                img.src = window.URL.createObjectURL(files[i]);
+               
+                listElement.appendChild(img);
+            
+
+
+
+                 
             }
     
+          
+        }
+    }
+
+
+const fileTypes = [
+    'image/jpeg',
+    'image/pjpeg',
+    'image/png'
+]
+
+function validFileType(file) {
+    for(let i = 0; i < fileTypes.length; i++) {
+      if(file.type === fileTypes[i]) {
+        return true;
+      }
+    }
+  
+    return false;
+  }
+
+
+        input.addEventListener('change', updateImageDisplay);
