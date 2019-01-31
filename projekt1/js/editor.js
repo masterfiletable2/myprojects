@@ -23,4 +23,13 @@ const canvas = document.querySelector('#canvas__pEditor');
                 let listElement = document.createElement('li');
                  
             }
-            
+
+            if(validFileType(files[i])){
+                let img = new Image();
+
+                img.src = " ";
+                img.addEventListener('load' , ()=>{
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                })
+            }
+    
