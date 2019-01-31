@@ -23,3 +23,4 @@ const canvas = document.querySelector('#canvas__pEditor');
                 let listElement = document.createElement('li');
                  
             }
+            
