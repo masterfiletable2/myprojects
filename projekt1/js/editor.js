@@ -2,11 +2,18 @@ const input = document.querySelector('input');
 const editor = document.querySelector('#canvas');
 const canvas = document.querySelector('#canvas__pEditor');
 
-
 	canvas.setAttribute('height',editor.clientHeight);
     canvas.setAttribute('width',editor.clientWidth);
     
     let ctx = canvas.getContext('2d');
+
+
+    
+function navElementSelector(n){
+    const navElements = document.querySelectorAll(".canvas__nav__element .canvas__nav__button")
+    return navElements[n].id;
+}
+
 
     function updateImageDisplay() {
         while(canvas.firstChild){
