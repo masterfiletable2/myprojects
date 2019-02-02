@@ -19,17 +19,20 @@
 
             <ul class="canvas__nav__list">
                 <li class="canvas__nav__element"><button id="negative" class="canvas__nav__button">Negatyw</button></li>
-                <li class="canvas__nav__element"><button id="delete" class="canvas__nav__button">Delete</button></li>
-              
-                     
-               
+                <li class="canvas__nav__element"><button id="clear" class="canvas__nav__button">Czyść</button></li>                               
             </ul>
+
+            <div class="canvas__sliders">
+                <span class="canvas__slider"><input type="range" value="128" min="0" max="255" id="red"></span>
+                <span class="canvas__slider"><input type="range" value="128" min="0" max="255" id="green"></span>
+                <span class="canvas__slider"><input type="range" value="128" min="0" max="255" id="blue"></span>
+            </div>
             
         </nav>
-        <div id="canvas">
-                <canvas id="canvas__pEditor">
+        <div id="canvas"> 
+                <canvas id="canvas__pEditor" >
                   
-                </canvas>
+                </canvas><a href="#" class="canvas__downloadImage" id="btn-download">Download</a>
     </div>
     </div>
 
