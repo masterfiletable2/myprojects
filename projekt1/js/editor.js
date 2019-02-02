@@ -8,8 +8,7 @@ const canvas = document.querySelector('#canvas__pEditor');
     let ctx = canvas.getContext('2d');
 
   
-    const img = new Image();
-
+    var image = new Image();
 
   input.addEventListener('change', updateImageDisplay);
 
@@ -32,15 +31,17 @@ const canvas = document.querySelector('#canvas__pEditor');
             if(validFileType(files[i])){
                 
 
-                img.addEventListener('load' , ()=>{
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                image.addEventListener('load' , ()=>{
+                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
                 })
 
                    
-                img.src = window.URL.createObjectURL(files[i]);
-               
-                listElement.appendChild(img);
+                image.src = window.URL.createObjectURL(files[i]);
+               console.log(image.src);
+                listElement.appendChild(image);
              
+
+               
                 
 
       
@@ -51,8 +52,8 @@ const canvas = document.querySelector('#canvas__pEditor');
     
           
         }
+        
     }
-
 
 
 
@@ -66,6 +67,7 @@ function validFileType(file) {
     for(let i = 0; i < fileTypes.length; i++) {
       if(file.type === fileTypes[i]) {
         return true;
+        
       }
     }
   
@@ -73,7 +75,6 @@ function validFileType(file) {
   }
 
 
-     
 
   var redSlider = document.getElementById("redSlider"); 
 var greenSlider = document.getElementById("greenSlider"); 
@@ -84,11 +85,10 @@ var blueOutput = document.getElementById("blueValue");
  
 
 
-
 function negative(){
      
   var GETimg = ctx.getImageData(0,0, canvas.width,canvas.height);
-   
+   console.log(ctx.toDataUrl)
     for(let i=0; i<GETimg.data.length; i+=4){
 
         GETimg.data[i] =-GETimg.data[i] + 255;      
@@ -97,7 +97,8 @@ function negative(){
     }
     ctx.putImageData(GETimg,0,0);
     console.log(GETimg);
-
+    
+    
 }
 
 function clear(){
@@ -109,25 +110,14 @@ function clear(){
 
 
 
-   
-function downloadImage(e){
-    let link = document.createElement('a');
-    link.download = "my-image.png";
-    link.href = img.src;
-    link.click();
-}
-
-
-
-
-
-document.querySelector("#negative").addEventListener('click', ()=>{    negative()})
+   document.querySelector("#negative").addEventListener('click', ()=>{    negative()})
 document.querySelector("#clear").addEventListener('click', ()=>{  clear()})
-document.getElementById('btn-download').addEventListener('click', downloadImage)
+document.getElementById('btn-download').addEventListener('click', downloadCanvas, false);
 
 
 
 
-
-
-
+function downloadCanvas() {
+    this.href = canvas.toDataURL();
+    this.download = "test.png";
+}
