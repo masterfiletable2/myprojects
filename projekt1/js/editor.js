@@ -21,7 +21,7 @@ const canvas = document.querySelector('#canvas__pEditor');
     let files = input.files;
       
 
-    let list = document.createElement('ol');
+    let list = document.createElement('ul');
         canvas.appendChild(list);
             for(let i =0; i < files.length; i++){
                 let listElement = document.createElement('li');
@@ -39,12 +39,6 @@ const canvas = document.querySelector('#canvas__pEditor');
                 image.src = window.URL.createObjectURL(files[i]);
                console.log(image.src);
                 listElement.appendChild(image);
-             
-
-               
-                
-
-      
 
                 document.getElementById('btn-download').style.display="block";
                  
@@ -76,14 +70,23 @@ function validFileType(file) {
 
 
 
-  var redSlider = document.getElementById("redSlider"); 
-var greenSlider = document.getElementById("greenSlider"); 
-var blueSlider = document.getElementById("blueSlider"); 
-var redOutput = document.getElementById("redValue");
-var greenOutput = document.getElementById("greenValue");
-var blueOutput = document.getElementById("blueValue");
- 
+let red = document.getElementById("red"); 
+let green = document.getElementById("green"); 
+let blue = document.getElementById("blue"); 
 
+function slide(){
+    var GETimg = ctx.getImageData(0,0, canvas.width,canvas.height);
+    console.log(ctx.toDataUrl)
+     for(let i=0; i<GETimg.data.length; i+=4){
+ 
+         GETimg.data[i] = red.value + 255;      
+         GETimg.data[i+1] = -GETimg.data[i+1]+ 255;        
+         GETimg.data[i+2] = -GETimg.data[i+2] + 255;   
+     }
+     ctx.putImageData(GETimg,0,0);
+     console.log(GETimg);
+ 
+}
 
 function negative(){
      
@@ -91,9 +94,9 @@ function negative(){
    console.log(ctx.toDataUrl)
     for(let i=0; i<GETimg.data.length; i+=4){
 
-        GETimg.data[i] =-GETimg.data[i] + 255;      
-        GETimg.data[i+1] =-GETimg.data[i+1]+ 255;        
-        GETimg.data[i+2] =-GETimg.data[i+2] + 255;   
+        GETimg.data[i] = -GETimg.data[i] + 255;      
+        GETimg.data[i+1] = -GETimg.data[i+1]+ 255;        
+        GETimg.data[i+2] = -GETimg.data[i+2] + 255;   
     }
     ctx.putImageData(GETimg,0,0);
     console.log(GETimg);
@@ -118,6 +121,10 @@ document.getElementById('btn-download').addEventListener('click', downloadCanvas
 
 
 function downloadCanvas() {
-    this.href = canvas.toDataURL();
-    this.download = "test.png";
+    let name = prompt("Podaj nazwę obrazka")
+    if(name != null){
+        this.href = canvas.toDataURL();
+    }
+  
+    this.download = name;
 }
