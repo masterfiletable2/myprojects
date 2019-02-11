@@ -12,17 +12,26 @@ body {
 #canvas {
     background: red;
   
-    height: 800px;
-    width: 800px;
 }
 
+#canvas__pEditor{
+  display: block;
+}
 .canvas__nav {
-    width:25%;
-    background: #F44336;
+    min-width:300px;
+    /*background: #F44336;*/
     height: 100vh;
-  
+    box-shadow:0px 0px 10px 1px #111;
+    z-index: 999;
 }
 
+.canvas__nav__title {
+  background: #F44336;
+  text-align: center;
+  padding:1rem;
+  margin:0;
+  font-weight: 400;
+}
 .canvas__nav__list {
     list-style: none;
     padding:0;
@@ -31,10 +40,22 @@ body {
 
 .canvas__nav__element {
     width:100%;
-    background: #E53935;
-    padding:1rem 0;
+   /* background: #E53935;*/
     text-align: center;
-    border-bottom:1px solid #C62828;
+   /*  border-bottom:1px solid #C62828;*/
+}
+
+.canvas__nav__button{
+  width:100%;
+  border:0;
+  background: inherit;
+padding:1rem;
+text-align: left;
+cursor: pointer;
+}
+
+.canvas__nav__icon {
+  padding-right:2rem;
 }
 
 
@@ -95,6 +116,7 @@ body {
     justify-content: center;
     align-self: center;
     padding:1rem;
+   
 }
 .canvas__button__upload {
     background:#fff;

@@ -32,7 +32,7 @@ const canvas = document.querySelector('#canvas__pEditor');
                 
 
                 image.addEventListener('load' , ()=>{
-                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(image, 0, 0, image.width, image.height);
                 })
 
                    
