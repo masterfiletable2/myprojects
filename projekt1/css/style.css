@@ -7,11 +7,14 @@ body {
 }
 .container {
     display: flex;
+
 }
 
 #canvas {
     background: red;
-  
+    width:100%;
+    max-width:100%;
+    height: auto;
 }
 
 #canvas__pEditor{
