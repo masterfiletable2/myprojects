@@ -1,5 +1,16 @@
 document.addEventListener('DOMContentLoaded', appStart);
 
+
+let isRecording = false;
+let recStartTime = 0;
+let radioList;
+let checkList;
+let clearList;
+let touch;
+let audioDOM;
+
+
+
 const sounds={
 97 :"boom",
 115:"clap",
@@ -13,11 +24,6 @@ const sounds={
 }
 
 
-let isRecording = false;
-let recStartTime = 0;
-let radioList;
-
-let audioDOM;
 
 
 const channels={
@@ -25,4 +31,18 @@ const channels={
     channel2:[],
     channel3:[],
     channel4:[]
+   }
+
+
+   function appStart(){
+
+    window.addEventListener('keypress',readKey);
+
+    document.querySelector('#rec').addEventListener('touchstart',recAudio);
+    document.querySelector('#play').addEventListener('touchstart',playAudio);
+    clearList=document.querySelectorAll(".remove");
+    radioList=document.querySelectorAll(".radio-check")   
+    checkList=document.querySelectorAll(".check");
+    touch= document.querySelectorAll(".sound__button__name");
+
    }
