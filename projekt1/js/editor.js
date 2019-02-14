@@ -40,8 +40,7 @@ const canvas = document.querySelector('#canvas__pEditor');
                console.log(image.src);
                 listElement.appendChild(image);
 
-                document.getElementById('btn-download').style.display="block";
-                 
+                document.getElementById('btn-download').style.display="flex";
             }
     
           
