@@ -1,15 +1,19 @@
+//zapisywanie klas/ id do zmiennych
 const input = document.querySelector('input');
 const editor = document.querySelector('#canvas');
 const canvas = document.querySelector('#canvas__pEditor');
-    var image = new Image();
+//dopasowanie kanwy do rozmiaru #canvas
 	canvas.setAttribute('height',editor.clientHeight);
     canvas.setAttribute('width',editor.clientWidth);
     
+    //tworzenie kanwy
     let ctx = canvas.getContext('2d');
 
-  
-    var image = new Image();
+  //obiekt, na którym operuję
+    const image = new Image();
 
+
+    //po zmianie wywołaj funkcję, która odpowaida za pobieranie obrazka
   input.addEventListener('change', updateImageDisplay);
 
     function updateImageDisplay() {
@@ -18,16 +22,18 @@ const canvas = document.querySelector('#canvas__pEditor');
         
 
 
-    let files = input.files;
+    let files = input.files; 
       
 
-    let list = document.createElement('ul');
-        canvas.appendChild(list);
-            for(let i =0; i < files.length; i++){
-                let listElement = document.createElement('li');
-                 
-            
+    let list = document.createElement('img');
 
+//operowanie na nowo wprowadzonym elemencie img
+    canvas.appendChild(list);
+
+
+            for(let i =0; i < files.length; i++){
+                          
+           //uzywam niestandardowej funkcji do sprawdzenia poprawnosci np typu
             if(validFileType(files[i])){
                 
 
@@ -35,7 +41,7 @@ const canvas = document.querySelector('#canvas__pEditor');
                     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
                 })
 
-                   
+                   // Generowanie miniatury
                 image.src = window.URL.createObjectURL(files[i]);
                console.log(image.src);
                 listElement.appendChild(image);
@@ -49,7 +55,7 @@ const canvas = document.querySelector('#canvas__pEditor');
     }
 
 
-
+// typy obrazow
 const fileTypes = [
     'image/jpeg',
     'image/pjpeg',
@@ -77,7 +83,7 @@ let blue = document.getElementById("blue");
 
 
 
-
+//Funkcja zarzadzania kolorem czerwieni, index i w petli odnosi sie do kolou Czerwonego
 
 function getRed(red) { 
     let imageData = ctx.getImageData(0,0, canvas.width, canvas.height);
@@ -92,7 +98,7 @@ function getRed(red) {
 
 }
 
-
+//Funkcja zarzadzania kolorem zielonym, index i+1 w petli odnosi sie do kolou Zielonego
 function getGreen(green) { 
     let imageData = ctx.getImageData(0,0, canvas.width, canvas.height);
     console.log(imageData);
@@ -106,7 +112,7 @@ function getGreen(green) {
 
 }
 
-
+//Funkcja zarzadzania kolorem niebieskim, index i w petli odnosi sie do kolou Niebieskiego
 function getBlue(blue) { 
     let imageData = ctx.getImageData(0,0, canvas.width, canvas.height);
     console.log(imageData);
@@ -124,7 +130,7 @@ function getBlue(blue) {
 
 
 
-
+//Funkcja odwrocania barw
 function negative(){
      
   let GETimg = ctx.getImageData(0,0, canvas.width,canvas.height);
@@ -141,9 +147,10 @@ function negative(){
     
 }
 
+//Funkcja "zerowania" utworzonego img
 function clear(){
     ctx.clearRect(0, 0, canvas.width,canvas.height);
-    document.getElementById('btn-download').style.display="none";
+    document.getElementById('btn-download').style.display="none";//ukrywanie przycisku, jezeli obiekt img zostal wyczyszczony
 
 
 }
@@ -157,6 +164,8 @@ red.addEventListener('input', (e)=>{getRed(e.target.value)})
 green.addEventListener('input', (e)=>{getGreen(e.target.value)})
 blue.addEventListener('input', (e)=>{getBlue(e.target.value)})
 
+
+//funkcja pobierania przetworzonego obrazku
 function downloadCanvas() {
     let name = prompt("Podaj nazwę obrazka")
     if(name != null){
