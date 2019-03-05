@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +12,10 @@
 </head>
 
 <body>
+
+       
+
+                
     <div class="container">
         <section class="sounds">
             <div class="sounds__button"> <audio src="sounds/boom.wav" id="boom"></audio>
@@ -44,28 +49,63 @@
     </div>
 
 
-
+ 
+            
     
 <nav class="channel">
 
-   
-    <ul class="channel__list">
-        <li class="channel__list__element">  <input type="checkbox" name="channel1" data-channel='channel1'>Channel 1</li>
-        <li class="channel__list__element">  <input type="checkbox" name="channel2" data-channel='channel2'>Channel 2</li>
-        <li class="channel__list__element">  <input type="checkbox" name="channel3" data-channel='channel3'>Channel 3</li>
-        <li class="channel__list__element"> <input type="checkbox" name="channel4" data-channel='channel4'>Channel 4</li>
+    
 
-      
-    </ul>
 
-    <button class="channel__button"  id="play">▶</button>
- 
-  
-  
-   
+<div class="channel__section">
+    <div class="channel__list">
+        <label class="channel__list__element">  <input type="checkbox" class="channel__radio" name="channel1" data-channel='channel1' checked />Kanał 1 - nagrywany</label>
+        <label class="channel__list__element">  <input type="checkbox" class="channel__radio" name="channel2" data-channel='channel2' >Kanał 2 - nagrywany</label>
+        <label class="channel__list__element">  <input type="checkbox" class="channel__radio" name="channel3" data-channel='channel3' />Kanał 3 - nagrywany</label>
+        <label class="channel__list__element"> <input type="checkbox" class="channel__radio" name="channel4" data-channel='channel4' />Kanał 4 - nagrywany</label>   
+    </div>
+
+
+
+    <button class="channel__button" id="record">◉</button>
+
 </div>
 
 
+<div class="channel__section">
+
+    <div class="channel__list">
+            <label class="channel__list__element">  <input type="checkbox" name="channel1" class="channel__check" data-channel='channel1' checked>Kanał 1 - odtwarzany</label>
+            <label class="channel__list__element">  <input type="checkbox" name="channel2" class="channel__check" data-channel='channel2'>Kanał 2 - odtwarzany</label>
+            <label class="channel__list__element">  <input type="checkbox" name="channel3" class="channel__check" data-channel='channel3'>Kanał 3 - odtwarzany</label>
+            <label class="channel__list__element"> <input type="checkbox" name="channel4" class="channel__check" data-channel='channel4'>Kanał 4 - odtwarzany</label>
+    
+          
+    </div>
+
+    <button class="channel__button"  id="play">▶</button>
+</div>  
+    
+
+<div class="channel__section">
+    <div id="check-first" class="channel__info">Chcąc nagrać dźwięki, co najmniej jeden checkbox musi być zaznaczony</div>
+</div>
+    
+</nav>
+  
+</div>
+
+
+
+
+
+
+
+
+
+      
+       
+   
     <script src="js/script.js"></script>
 </body>
 

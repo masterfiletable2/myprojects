@@ -48,8 +48,14 @@ body {
 .channel {
     display: flex;
     padding:5%;
+    justify-content: center;
+    flex-wrap:wrap;
 }
-
+.channel__section {
+    display: flex;
+    padding:1rem;
+    justify-content: center;;
+}
 .channel__list{
     display:inline-flex;
    padding:0;
@@ -72,7 +78,14 @@ body {
     transition:.3s;
 }
 
-.channel__button:hover {
-    background:#000;
+.channel__section:nth-child(2) .channel__button:hover {
+    background:#8BC34A;
     color:#fff;
+}
+
+.channel__info {
+   align-self: center;
+   background-color: #8BC34A;
+   padding:1rem;
+   margin:1rem;
 }
