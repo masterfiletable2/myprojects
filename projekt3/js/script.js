@@ -92,7 +92,7 @@ function checkCollisions() {
 
     for (i = 0; i < gaps.length; i++) {
         if (positionY < Math.floor(gaps[i].style.top.slice(0, -2)) + 50
-         && positionY > gaps[i].style.top.slice(0, -2) - 50
+         && positionY > gaps[i].style.top.slice(0, -4) - 50
             && positionX > gaps[i].style.left.slice(0, -2) - 50 && 
             positionX < Math.floor(gaps[i].style.left.slice(0, -2)) + 50) {
            
