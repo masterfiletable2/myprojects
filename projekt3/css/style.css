@@ -15,17 +15,26 @@
 }
 
 
-
-
-
-
 @keyframes colBallPosition {
+ 25%{
+     top:70%;
+ }
+    50% {
+        top: 50%;
+        left:50%;
+    }
+}
+
+
+
+@keyframes colBallPosition2 {
     0%,100% {
         right:10%;
       
     }
     50% {
-    opacity:0;
+        top: 20%;
+        left:50%;
     }
 }
 
@@ -92,7 +101,7 @@ body {
 .space__gap, .space__goal, .tempgap {
     width: 30px;
     height: 30px;
-    border-radius: 30px;
+    border-radius: 50%;
     z-index: -2;
     position: absolute;
 }
@@ -107,7 +116,15 @@ body {
     background: #fff;
     border:5px double #000;
     position: absolute;
-    animation: colBallPosition 5s infinite;
+    animation: colBallPosition 10s infinite;
+
+}
+
+.space__gap:nth-child(even) {
+    background: #fff;
+    border:5px double #000;
+    position: absolute;
+    animation: colBallPosition2 5s infinite;
 
 }
 
