@@ -91,10 +91,12 @@ function setNewPointGap(i) {
 function checkCollisions() {
 
     for (i = 0; i < gaps.length; i++) {
-        if (positionY < Math.floor(gaps[i].style.top.slice(0, -2)) + 25
-        && positionY > gaps[i].style.top.slice(0, -2) - 25
-           && positionX > gaps[i].style.left.slice(0, -2) - 25 && 
-           positionX < Math.floor(gaps[i].style.left.slice(0, -2)) + 25) {
+
+        //30 rozmiar i szerokosc gap
+        if (positionY < Math.floor(gaps[i].style.top.slice(0, -2)) + 30
+        && positionY > gaps[i].style.top.slice(0, -2) - 30
+           && positionX > gaps[i].style.left.slice(0, -2) - 30 && 
+           positionX < Math.floor(gaps[i].style.left.slice(0, -2)) + 30) {
            
                 if (gaps[i].classList.contains("space__goal")) {
                 gaps[i].classList.remove("space__goal");

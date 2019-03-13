@@ -90,8 +90,9 @@ body {
     }
 
 .space__gap, .space__goal, .tempgap {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
     z-index: -2;
     position: absolute;
 }
