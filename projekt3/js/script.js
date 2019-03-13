@@ -81,6 +81,88 @@ function orientation(targ) {
 
 }
 
+function setNewPointGap(i) {
+    let goodGap =[ Math.floor(Math.random() * gaps.length)];
+    
+    gaps[goodGap].classList.remove("space__gap");
+    gaps[goodGap].classList.add("space__goal")
+}
+//funkcja obliczająca właściwości struktury, sprawdzająca kolizję
+function checkCollisions() {
+
+    for (i = 0; i < gaps.length; i++) {
+        if (positionY < Math.floor(gaps[i].style.top.slice(0, -2)) + 50
+         && positionY > gaps[i].style.top.slice(0, -2) - 50
+            && positionX > gaps[i].style.left.slice(0, -2) - 50 && 
+            positionX < Math.floor(gaps[i].style.left.slice(0, -2)) + 50) {
+           
+                if (gaps[i].classList.contains("space__goal")) {
+                gaps[i].classList.remove("space__goal");
+               
+
+                //jeżeli trafi na zieloną kulkę, to dodaje punkt 
+                point++
+                counter.innerHTML = "Points: " + point;
+                
+                setNewPointGap(i);
+            }
+
+            //Jeżeli gracz natrafi na dziurę(przegra)
+            else if (gaps[i].classList.contains("space__gap")) {
+                isPlaying = false;
+              
+                restart.hidden = false;
+            restart.style.display = "block"
+
+//zatrzymaj czas
+                clearInterval(timer)
+            }
+        }
+    };
+}
+
+
+//funkcja wpływająca na zmianę pozycji kulki
+
+function changePosition() {
+        
+    if (positionX + speedX < window.innerWidth - 10 && positionX + speedX > 0) {
+        positionX = positionX + speedX;
+             space__ball.style.left = positionX + 'px';
+        //console.log(space__ball.style.left)
+    }
+
+    if (positionY + speedY < window.innerHeight - 10 && positionY + speedY > 0) {
+        positionY = positionY + speedY;
+              space__ball.style.top = positionY + 'px';
+    }
+
+//wywołaj funkcje sprawdzajca kolizje
+
+    checkCollisions();
+
+    if (isPlaying == true) {
+        window.requestAnimationFrame(changePosition)
+    }
+}
+
+
+
+
+
+//funkcja generująca i dodająca do tablicy elementy kolizyjne w proporcji szerokosci ekronu do stałej 
+function spawnGaps() {
+    for (i = 2; i < (window.innerWidth / 30); i++) {
+        let gap = document.createElement('div');
+          gap.classList.add("space__gap");
+            gap.style.left = Math.random() * (window.innerWidth - 10) + 'px';
+            gap.style.top = Math.random() * (window.innerHeight - 10) + 'px';
+        
+              gaps.push(gap);
+        space.appendChild(gap);
+    }
+    setNewPointGap(1);
+}
 
 
 

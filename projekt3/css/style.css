@@ -1,11 +1,40 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,700');
 
+
+
 @keyframes changeSizeBall {
     0%,100% {
         padding:0.2rem;
+        background: #008000;
+     
     }
     50%{
        padding:0;
+       background: #ff0000;
+    }
+}
+
+
+@keyframes colBallPosition {
+ 25%{
+     top:70%;
+ }
+    50% {
+        top: 50%;
+        left:50%;
+    }
+}
+
+
+
+@keyframes colBallPosition2 {
+    0%,100% {
+        right:10%;
+      
+    }
+    50% {
+        top: 20%;
+        left:50%;
     }
 }
 
@@ -70,8 +99,8 @@ body {
     }
 
 .space__gap, .space__goal, .tempgap {
-    width: 55px;
-    height: 55px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     z-index: -2;
     position: absolute;
@@ -84,7 +113,18 @@ body {
 }
 
 .space__gap {
-    background: #000;
+    background: #fff;
+    border:5px double #000;
+    position: absolute;
+    animation: colBallPosition 10s infinite;
+
+}
+
+.space__gap:nth-child(even) {
+    background: #fff;
+    border:5px double #000;
+    position: absolute;
+    animation: colBallPosition2 5s infinite;
 
 }
 
