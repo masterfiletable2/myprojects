@@ -5,14 +5,13 @@ const noteContent = noteForm.querySelector('.note__content');
 const deleteAll = document.querySelector('.notes__button--deleteAll');
 
 const notes = JSON.parse(localStorage.getItem('notes')) || [];
-const actuallyTime = new Date().toJSON().slice(0,20).replace(/-/g,'/');
+const actuallyTime = new Date().toJSON().slice(0,20).replace(/-/g,'/'); //czas notatki przetworzony na bardziej czytelny z uzyciem ciec i zamian pewnych wartosci
 
 const color = document.querySelector(".notes__color");
 
 
 
 let storyOfPosition = 0;
-
 
 
 fillNotesList(notes);
@@ -30,18 +29,17 @@ function createNote(e) {
   let note = {
     title: title,
     content: content,
-    date: actuallyTime.replace("T" , " "),
-    color: color.value,
-    storyOfPosition: storyOfPosition
+    date: actuallyTime.replace("T" , " "), // kontynuacja zabawy z wyswietleniem
+    color: color.value, // wartosc koloru
+    storyOfPosition: storyOfPosition 
   };
 
 //  JSON.stringify(note.storyOfPosition = "2")
 
-  
+  //dodawanie notatki na koniec tablicy notes
   notes.push(note);
   fillNotesList(notes);
   storeNotes(notes);
-  noteForm.reset();
 
 
 }
@@ -60,13 +58,10 @@ function fillNotesList(notes = []) {
       </div>
       </div>
     `;
-  }).join('');
+  }); 
   
   notesList.innerHTML = notesHtml;
 
-
-
-  let test = document.querySelector("#delete");
   
 
   /*odkrywanie i chowanie przycisku, jezeli jest rekord, badz go nie ma w localStoarge */
@@ -80,5 +75,53 @@ function fillNotesList(notes = []) {
   }
 }
 
+function storeNotes(notes = []) {
+
+  //dodwanie nazwy klucza localStorage
+  localStorage.setItem('notes', JSON.stringify(notes));
+}
+function deleteNote(e) {
+  if (!e.target.matches('.delete')) return;
+  
+  // znajdź index
+  const index = e.target.parentNode.dataset.id;
+
+  notes.splice(index, 1); // 1 aby  1 
+  //wypełnianie notatki
+  fillNotesList(notes);
+  //zapisanie do local Stoarge
+  storeNotes(notes);
+}
+
+
+//Sztuczne usuwanie z localstoarge - wyzerowanie tablicy notatek
+deleteAll.addEventListener('click',  ()=> 
+{
+  localStorage.clear()
+  notesList.style.display ="none";
+  notes.length = 0;
+
+  //jezeli juz wyzerowano, to ukryj przycisk do usuwania
+  if(notes.length === 0){
+    deleteAll.style.display = "none";
+   }
+
+
+}
+  );
+
+
+    Array.from(document.querySelectorAll(".notes__element")).forEach(link => {
+      link.addEventListener('click', function(event) {
+        if(event){
+        this.style.order="-1";
+        this.style.order--
+      }
+      
+      });
+  });
+
+noteForm.addEventListener('submit', createNote);
+notesList.addEventListener('click', deleteNote);
 
 
