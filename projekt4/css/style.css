@@ -34,7 +34,7 @@ html,body{
 .notes__element {
 padding:1rem;
 min-height: 150px;
-max-width:150px;
+width:calc(100%/5);
 word-wrap: break-word;
 margin:1rem;
 border-left:10px solid;
@@ -44,7 +44,7 @@ display: flex;
 flex-direction: column;
 }
 
-.notes__title, .note__content{
+.notes__title, .notes__content{
   margin:1rem;
   border:0;
   outline: 0;
@@ -59,7 +59,7 @@ flex-direction: column;
   max-width: 80%;
 }
 
-.note__content{
+.notes__content{
   min-width:80%;
   max-width: 80%;
   max-height: 50vh;
@@ -95,7 +95,14 @@ align-items:center;
   color:#000;
 }
 
-.delete {
+
+
+.note__title {
+  font-weight: 600;
+  padding:1rem 0;
+  font-size:1.6rem;
+}
+.note__delete {
   
   display: inline-flex;
 
@@ -114,7 +121,8 @@ align-items:center;
 }
 
 
-
-.droptarget {
- 
+@media only screen and (max-width: 600px) {
+  .notes__form, .notes__element {
+    width:100%;
+  }
 }

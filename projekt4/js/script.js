@@ -1,7 +1,7 @@
 const notesList = document.querySelector('.notes__list');
 const noteForm = document.querySelector('.notes__form');
 const noteInput = noteForm.querySelector('.notes__title');
-const noteContent = noteForm.querySelector('.note__content');
+const noteContent = noteForm.querySelector('.notes__content');
 const deleteAll = document.querySelector('.notes__button--deleteAll');
 
 const notes = JSON.parse(localStorage.getItem('notes')) || [];
@@ -11,7 +11,6 @@ const color = document.querySelector(".notes__color");
 
 
 
-let storyOfPosition = 0;
 
 
 fillNotesList(notes);
@@ -23,7 +22,6 @@ function createNote(e) {
  
   const title = noteInput.value;
   const content = noteContent.value;
-  let storyOfPosition = null
 
 //obiekt który będzie przechowany w localStoarge 
   let note = {
@@ -31,15 +29,25 @@ function createNote(e) {
     content: content,
     date: actuallyTime.replace("T" , " "), // kontynuacja zabawy z wyswietleniem
     color: color.value, // wartosc koloru
-    storyOfPosition: storyOfPosition 
   };
 
 //  JSON.stringify(note.storyOfPosition = "2")
 
-  //dodawanie notatki na koniec tablicy notes
-  notes.push(note);
-  fillNotesList(notes);
-  storeNotes(notes);
+ //prosta walidacja treści
+  if(title == "" || content == ""){
+alert("Uzupełnij proszę treść")
+  }
+
+  else {
+     //dodawanie notatki na koniec tablicy notes
+    notes.push(note);
+    fillNotesList(notes);
+    storeNotes(notes);
+    
+  //losowe generowanie notatki dla karteczki po stworzeniu
+  color.value = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+
+  }
 
 
 }
@@ -49,13 +57,11 @@ function createNote(e) {
 function fillNotesList(notes = []) {
   const notesHtml = notes.map((note, i) => {
     return `
-    <div class="notes__dragContainer" draggable="true" id="${i}">
       <div class="notes__element"  style="border-color:${note.color}" data-id="${i}">
-      <div class="date">${note.date}</div>
-        <div class="title">${note.title}</div>
-        <div class="content">${note.content}</div>
-           <i class="delete">x</i>
-      </div>
+      <div class="note__date">${note.date}</div>
+        <div class="note__title">${note.title}</div>
+        <div class="note__content">${note.content}</div>
+           <i class="note__delete">x</i>
       </div>
     `;
   }); 
@@ -81,7 +87,7 @@ function storeNotes(notes = []) {
   localStorage.setItem('notes', JSON.stringify(notes));
 }
 function deleteNote(e) {
-  if (!e.target.matches('.delete')) return;
+  if (!e.target.matches('.note__delete')) return;
   
   // znajdź index
   const index = e.target.parentNode.dataset.id;
@@ -111,15 +117,6 @@ deleteAll.addEventListener('click',  ()=>
   );
 
 
-    Array.from(document.querySelectorAll(".notes__element")).forEach(link => {
-      link.addEventListener('click', function(event) {
-        if(event){
-        this.style.order="-1";
-        this.style.order--
-      }
-      
-      });
-  });
 
 noteForm.addEventListener('submit', createNote);
 notesList.addEventListener('click', deleteNote);
