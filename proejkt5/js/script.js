@@ -6,7 +6,7 @@ let pin = 'https://placeimg.com/40/40/animals';
 
 //inicjalizacja oraz ustawienia parametrow dla mapy, pointera itd
 function initMap() {
-    coords = { lat: 49.989093, lng: 20.0063032 }; 
+    coords = { lat: 49.989093, lng: 20.0063032 };  
     map = new google.maps.Map(document.querySelector('#map'), {
         center: coords,
         //disableDefaultUI: false
@@ -24,7 +24,7 @@ function initMap() {
     addKeyboardEvents();
 }
 
-
+let id
 let WS;
 
 
@@ -76,7 +76,7 @@ function movePointer(e) {
     let wsData = {
         lat: lat,
         lng: lng,
-        id: 11302
+        id: id
     };
 
 
@@ -97,4 +97,58 @@ function startWebSocket() {
 function OpenWS(data) {
     console.log(data);
 }
+
+let players = {};
+
+
+
+function noticeWS(e) {
+    let data = JSON.parse(e.data)
+
+    if (!players['user' + data.id]) {
+        players['user' + data.id] = new google.maps.Marker({
+           
+            map: map,
+            icon: pin,         
+            position: { lat: data.lat, lng: data.lng }
+        });
+    } else {
+        players['user' + data.id].setPosition({
+            lat: data.lat,
+            lng: data.lng
+        });
+    }
+    console.log(data);
+}
+
+
+
+
+function getLocalization() {
+    navigator.geolocation.getCurrentPosition(accepted, canceled);
+
+}
+
+
+//Walidacja akceptacji lokalizacji
+
+function accepted(data) {
+    let coords = {
+        lat: data.coords.latitude,
+        lng: data.coords.longitude
+    };
+    map.setCenter(coords);
+    pointer.setPosition(coords);
+    alert('Super! Użyj strzałek do porusznia się.');
+}
+
+function canceled(err) {
+  var ask = confirm('Twoja lokalizacja polepszy dokładność w działaniu skryptu, może chcesz jednak ponowić próbę?');
+  if (ask == true){
+    location.reload();
+  }
+
+ 
+}
+
 
